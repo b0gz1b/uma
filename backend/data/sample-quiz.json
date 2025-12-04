@@ -1,0 +1,62 @@
+{
+  "version": "1.0",
+  "metadata": {
+    "title": "Umamusuquiz",
+    "description": "Are you as knowledgeable as Digitan?",
+    "author": "atram",
+    "createdAt": "2025-12-03T18:00:00Z",
+    "updatedAt": "2025-12-03T18:25:00Z",
+    "category": "Idol",
+    "id": 1
+  },
+  "settings": {
+    "defaultQuestionDuration": 50,
+    "minParticipants": 1,
+    "maxParticipants": 50,
+    "requiresApproval": false,
+    "allowRevisions": false
+  },
+  "questions": [
+    {
+      "id": "q-001",
+      "order": 1,
+      "title": "Which uma is this?",
+      "category": "Idol",
+      "difficulty": "easy",
+      "timeLimit": 50,
+      "questionSegments": [
+        {
+          "id": "seg-q001-01",
+          "type": "image",
+          "duration": 15,
+          "contentUrl": "/assets/images/tokai-teio.png",
+          "points": 5
+        },
+        {
+          "id": "seg-q001-02",
+          "type": "sound",
+          "duration": 15,
+          "contentUrl": "/assets/sounds/tokai-teio.mp3",
+          "points": 3
+        },
+        {
+          "id": "seg-q001-03",
+          "type": "image",
+          "duration": 15,
+          "contentUrl": "/assets/images/tokai-teio-uma.png",
+          "points": 1
+        }
+      ],
+      "answerSegment": {
+        "id": "seg-q001-answer",
+        "type": "text",
+        "content": "Tokai Teio",
+        "imageUrl": "/assets/images/tokai-teio-answer.png"
+      },
+      "acceptableAnswers": ["Tokai Teio"],
+      "answerType": "single",
+      "correctAnswer": "Tokai Teio",
+      "tags": ["idol", "uma"]
+    }
+  ]
+}
