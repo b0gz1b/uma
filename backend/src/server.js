@@ -1,41 +1,51 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
-const pool = require('./config/database');
-
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+const pool = require("./config/database");
+const path = require("path");
 const app = express();
-
+const fs = require('fs');
 // Middleware
-app.use(cors({
-  origin: process.env.FRONTEND_URL,
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  }),
+);
 app.use(express.json());
-
+// Serve static files from public/assets directory
+app.use("/assets", express.static(path.join(__dirname, "public/assets")));
+const assetsPath = path.join(__dirname, 'public/assets');
+if (!fs.existsSync(assetsPath)) {
+  console.error('❌ ASSETS FOLDER MISSING:', assetsPath);
+  console.error('📁 Create: mkdir -p public/assets/images public/assets/sounds');
+} else {
+  console.log('✅ Assets folder found:', assetsPath);
+}
 // Health check
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'Backend is running' });
+app.get("/api/health", (req, res) => {
+  res.json({ status: "Backend is running" });
 });
 
 // Database connection test
-app.get('/api/db-test', async (req, res) => {
+app.get("/api/db-test", async (req, res) => {
   try {
-    const result = await pool.query('SELECT NOW()');
-    res.json({ 
-      status: 'Connected to PostgreSQL',
-      time: result.rows[0].now
+    const result = await pool.query("SELECT NOW()");
+    res.json({
+      status: "Connected to PostgreSQL",
+      time: result.rows[0].now,
     });
   } catch (err) {
-    res.status(500).json({ 
-      error: 'Database connection failed',
-      message: err.message 
+    res.status(500).json({
+      error: "Database connection failed",
+      message: err.message,
     });
   }
 });
 
 // Routes will be added here
-app.use('/api/quizzes', require('./routes/quizzes'));
-app.use('/api/sessions', require('./routes/sessions'));
+app.use("/api/quizzes", require("./routes/quizzes"));
+app.use("/api/sessions", require("./routes/sessions"));
 // app.use('/api/answers', require('./routes/answers'));
 // app.use('/api/auth', require('./routes/auth'));
 

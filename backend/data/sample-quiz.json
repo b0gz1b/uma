@@ -29,21 +29,21 @@
           "id": "seg-q001-01",
           "type": "image",
           "duration": 15,
-          "contentUrl": "/assets/images/tokai-teio.png",
+          "contentUrl": "http://localhost:5000/assets/images/tokai-teio.png",
           "points": 5
         },
         {
           "id": "seg-q001-02",
           "type": "sound",
           "duration": 15,
-          "contentUrl": "/assets/sounds/tokai-teio.mp3",
+          "contentUrl": "http://localhost:5000/assets/sounds/tokai-teio.mp3",
           "points": 3
         },
         {
           "id": "seg-q001-03",
           "type": "image",
           "duration": 15,
-          "contentUrl": "/assets/images/tokai-teio-uma.png",
+          "contentUrl": "http://localhost:5000/assets/images/tokai-teio-uma.png",
           "points": 1
         }
       ],
@@ -51,7 +51,7 @@
         "id": "seg-q001-answer",
         "type": "text",
         "content": "Tokai Teio",
-        "imageUrl": "/assets/images/tokai-teio-answer.png"
+        "imageUrl": "http://localhost:5000/assets/images/tokai-teio-answer.png"
       },
       "acceptableAnswers": ["Tokai Teio"],
       "answerType": "single",

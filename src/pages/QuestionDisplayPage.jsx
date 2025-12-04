@@ -36,11 +36,14 @@ export default function QuestionDisplayPage() {
 
   // Load quiz when component mounts or quizId changes
   useEffect(() => {
-    const quiz = quizzes.find((q) => q.metadata.id === parseInt(quizId));
-    if (quiz) {
-      selectQuiz(quiz.metadata.id);
-    }
-    console.log(quiz, currentQuiz);
+    const loadQuiz = async () => {
+      const quiz = quizzes.find((q) => q.metadata.id === parseInt(quizId));
+      if (quiz) {
+        await selectQuiz(quiz.metadata.id);
+      }
+      console.log(quiz, currentQuiz);
+    };
+    loadQuiz();
   }, [quizId, quizzes]);
 
   const currentQuestion = getCurrentQuestion();
@@ -71,7 +74,7 @@ export default function QuestionDisplayPage() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [currentQuestionIndex, showAnswerReview, quizComplete]);
+  });
 
   const handleNextQuestion = () => {
     if (!currentQuiz) return;
