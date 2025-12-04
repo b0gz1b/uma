@@ -41,13 +41,11 @@ export default function QuestionDisplayPage() {
       if (quiz) {
         await selectQuiz(quiz.metadata.id);
       }
-      console.log(quiz, currentQuiz);
     };
     loadQuiz();
   }, [quizId, quizzes]);
 
   const currentQuestion = getCurrentQuestion();
-  console.log(currentQuestion);
   const handleSubmitAnswer = async () => {
     if (!currentQuestion) return;
 
@@ -181,7 +179,8 @@ export default function QuestionDisplayPage() {
         <Grid cols={3} gap="lg">
           {/* Question Display */}
           <div className="col-span-2">
-            <QuestionDisplay question={currentQuestion} mode="all" />
+            
+            <QuestionDisplay question={currentQuestion } mode="all" />
           </div>
 
           {/* Sidebar */}

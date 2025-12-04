@@ -41,8 +41,7 @@ class Quiz {
                 'type', s.type,
                 'duration', s.duration,
                 'points', s.points,
-                'content', s.content,
-                'url', s.url,
+                'contentUrl', s.content_url,
                 'order', s."order"
               )
               ORDER BY s."order"

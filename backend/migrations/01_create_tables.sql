@@ -39,8 +39,7 @@ CREATE TABLE IF NOT EXISTS segments (
   type VARCHAR(50) NOT NULL,
   duration INT,
   points INT DEFAULT 10,
-  content TEXT,
-  url VARCHAR(500),
+  content_url TEXT,
   "order" INT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

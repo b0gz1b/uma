@@ -6,7 +6,7 @@ export default function HomePage() {
   const [selectedRole, setSelectedRole] = useState(null);
   const navigate = useNavigate();
   const { quizzes, loading, error } = useQuiz();
-
+  console.log(quizzes);
   if (loading) {
     return (
       <div className="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center">
@@ -162,7 +162,7 @@ export default function HomePage() {
 
                   <div className="space-y-2 mb-4 text-sm text-gray-600">
                     <p>📚 Category: {quiz.metadata.category || "General"}</p>
-                    <p>📝 Questions: {quiz.questions.length}</p>
+                    <p>📝 Questions: {quiz.metadata.nb_questions || 0}</p>
                   </div>
 
                   <Button

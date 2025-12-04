@@ -19,13 +19,13 @@ export default function AdminDashboard() {
   const [showNewQuestionForm, setShowNewQuestionForm] = useState(false);
 
   const selectedQuiz = quizzes.find((q) => q.id === selectedQuizId) || quizzes;
-
-  const filteredQuestions =
-    selectedQuiz?.questions.filter(
-      (q) =>
-        q.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        q.category?.toLowerCase().includes(searchTerm.toLowerCase()),
-    ) || [];
+  console.log(quizzes, selectedQuizId);
+  const filteredQuestions = 
+  selectedQuiz.questions?.filter(
+    (q) =>
+      q.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      q.category?.toLowerCase().includes(searchTerm.toLowerCase()),
+  ) || [];
 
   if (loading) {
     return (
@@ -88,7 +88,7 @@ export default function AdminDashboard() {
                   setSearchTerm("");
                 }}
               >
-                {quiz.title}
+                {quiz.metadata.title}
               </Button>
             ))}
           </Grid>

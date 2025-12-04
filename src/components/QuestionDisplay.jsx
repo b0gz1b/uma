@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
-import TextSegment from '@components/segments/TextSegment';
-import ImageSegment from '@components/segments/ImageSegment';
-import SoundSegment from '@components/segments/SoundSegment';
-import Card from '@components/Card';
-import Badge from '@components/Badge';
+import { useState, useEffect } from "react";
+import TextSegment from "@components/segments/TextSegment";
+import ImageSegment from "@components/segments/ImageSegment";
+import SoundSegment from "@components/segments/SoundSegment";
+import Card from "@components/Card";
+import Badge from "@components/Badge";
 
 function SegmentRenderer({ segment }) {
   switch (segment.type) {
-    case 'text':
+    case "text":
       return <TextSegment {...segment} />;
-    case 'image':
+    case "image":
       return <ImageSegment {...segment} />;
-    case 'sound':
+    case "sound":
       return <SoundSegment {...segment} />;
     default:
       return <p>Unknown segment type</p>;
@@ -20,16 +20,19 @@ function SegmentRenderer({ segment }) {
 
 export default function QuestionDisplay({
   question,
-  mode = 'all', // 'all' | 'progressive'
+  mode = "all", // 'all' | 'progressive'
   onSegmentComplete,
 }) {
   const [visibleSegments, setVisibleSegments] = useState(
-    mode === 'all' ? question.questionSegments : [question.questionSegments]
+    mode === "all" ? question.questionSegments : [question.questionSegments],
   );
   const [currentSegmentIndex, setCurrentSegmentIndex] = useState(0);
 
   useEffect(() => {
-    if (mode === 'progressive' && currentSegmentIndex < question.questionSegments.length - 1) {
+    if (
+      mode === "progressive" &&
+      currentSegmentIndex < question.questionSegments.length - 1
+    ) {
       const timer = setTimeout(() => {
         const nextIndex = currentSegmentIndex + 1;
         setCurrentSegmentIndex(nextIndex);
@@ -41,8 +44,14 @@ export default function QuestionDisplay({
     }
   }, [currentSegmentIndex, question, mode, onSegmentComplete]);
 
-  const totalDuration = question.questionSegments.reduce((sum, seg) => sum + seg.duration, 0);
-  const totalPoints = question.questionSegments.reduce((sum, seg) => sum + seg.points, 0);
+  const totalDuration = question.questionSegments.reduce(
+    (sum, seg) => sum + seg.duration,
+    0,
+  );
+  const totalPoints = question.questionSegments.reduce(
+    (sum, seg) => sum + seg.points,
+    0,
+  );
 
   return (
     <div className="flex flex-col gap-6">
@@ -76,14 +85,15 @@ export default function QuestionDisplay({
         ))}
       </div>
 
-      {mode === 'progressive' && currentSegmentIndex < question.questionSegments.length - 1 && (
-        <Card className="bg-blue-50 border-blue-200">
-          <p className="text-sm text-blue-700">
-            Next segment in {question.questionSegments[currentSegmentIndex].duration}s...
-          </p>
-        </Card>
-      )}
+      {mode === "progressive" &&
+        currentSegmentIndex < question.questionSegments.length - 1 && (
+          <Card className="bg-blue-50 border-blue-200">
+            <p className="text-sm text-blue-700">
+              Next segment in{" "}
+              {question.questionSegments[currentSegmentIndex].duration}s...
+            </p>
+          </Card>
+        )}
     </div>
   );
 }
-

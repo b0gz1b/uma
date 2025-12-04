@@ -6,7 +6,8 @@ import QuestionDisplayPage from '@pages/QuestionDisplayPage';
 import ResultsPage from '@pages/ResultsPage';
 import NotFoundPage from '@pages/NotFoundPage';
 import RootLayout from '@layouts/RootLayout';
-
+import TestImagePage from '@pages/TestImagePage'
+import TestImage from '@/pages/TestImagePage';
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -20,6 +21,9 @@ export const router = createBrowserRouter([
       {
         path: 'admin',
         element: <AdminDashboard />,
+      },{
+        path: 'test',
+        element: <TestImagePage />,
       },
       {
         path: 'join',

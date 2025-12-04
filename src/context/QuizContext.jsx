@@ -35,6 +35,7 @@ export function QuizProvider({ children }) {
           category: quiz.metadata.category,
           difficulty: quiz.metadata.difficulty,
           description: quiz.metadata.description,
+          nb_questions: quiz.metadata.nb_questions,
         },
         questions: quiz.questions || [],
       }));
@@ -68,6 +69,7 @@ export function QuizProvider({ children }) {
           category: quizData.metadata.category,
           difficulty: quizData.metadata.difficulty,
           description: quizData.metadata.description,
+          nb_questions: quizData.metadata.nb_questions,
         },
         questions: quizData.questions || [],
       };
@@ -76,7 +78,6 @@ export function QuizProvider({ children }) {
       setCurrentQuestionIndex(0);
       setUserAnswers({});
     } catch (err) {
-      console.error("Error selecting quiz:", err);
       setError(err.message);
     }
   };

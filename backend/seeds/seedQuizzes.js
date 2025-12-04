@@ -57,6 +57,7 @@ async function seed() {
           quizData.metadata?.description ||
           quizData.description ||
           "Sample quiz data",
+        nb_questions: quizData.metadata?.nb_questions || 0,
       };
 
       console.log(`📚 Processing quiz: ${metadata.title}`);
@@ -118,15 +119,14 @@ async function seed() {
         for (const segment of segments) {
           await pool.query(
             `INSERT INTO segments 
-              (question_id, type, duration, points, content, url, "order")
-             VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+              (question_id, type, duration, points, content_url, "order")
+             VALUES ($1, $2, $3, $4, $5, $6)`,
             [
               questionId,
               segment.type || "text",
               segment.duration || null,
               segment.points || 10,
-              segment.content || null,
-              segment.url || null,
+              segment.contentUrl || null,
               segmentOrder++,
             ],
           );
